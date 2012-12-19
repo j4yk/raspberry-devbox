@@ -39,7 +39,7 @@ class raspberry_dev::raspbian_chroot {
     timeout => 1500,   # 25 minutes
 
   } -> exec {'debootstrap-second-stage':
-    command => "sb2 -t raspberry ./debootstrap/debootstrap --verbose --second-stage",
+    command => "sb2 -t raspberry -eR ./debootstrap/debootstrap --verbose --second-stage",
     environment => $sbox2_required_env_flags,
     cwd     => $raspberry_dev::config::sbox2_container_path,
     user    => vagrant,
@@ -51,7 +51,7 @@ class raspberry_dev::raspbian_chroot {
     #   W: Failure while configuring required packages.
     tries   => 2,
     timeout => 1500,   # 25 minutes
-    
+
   } -> file {"${raspberry_dev::config::sbox2_container_path}/etc/apt/sources.list":
     source  => "puppet:///modules/raspberry_dev/rootfs/etc/apt/sources.list",
     ensure  => present,
