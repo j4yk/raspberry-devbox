@@ -8,10 +8,10 @@ Vagrant::Config.run do |config|
 
   config.vm.define :nox do |box|
     # Every Vagrant virtual environment requires a box to build off of.
-    box.vm.box = "ubuntu-10.04.3-server-amd64-asq"
+    box.vm.box = "precise64"
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system.
-    box.vm.box_url = "http://asquera-share.s3.amazonaws.com/boxes/base/ubuntu-10.04.3-server-amd64-asq.box"
+    box.vm.box_url = "http://files.vagrantup.com/precise64.box"
     
     # Boot with a GUI so you can see the screen. (Default is headless)
     #box.vm.boot_mode = :gui
@@ -22,9 +22,7 @@ Vagrant::Config.run do |config|
       puppet.manifests_path = "puppetmanifests"
       puppet.manifest_file = "raspberry-nox.pp"
       puppet.module_path = "modules"
-      puppet.options = ""
+      puppet.options = ["--verbose", "--debug"]
     end
   end
-
-
 end
