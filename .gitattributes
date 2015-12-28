@@ -1,0 +1,5 @@
+* text=auto
+
+# make sure the line endings are LF even on Windows
+*.pp    text eol=lf
+*.erb   text eol=lf
